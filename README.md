@@ -65,9 +65,7 @@ py.exe BrutDroid.py
 
 ## 📸 Screenshot
 
-![screenshot](Screenshot/1.png)
-![screenshot](Screenshot/2.png)
-![screenshot](Screenshot/3.png)
+![screenshot](Screenshots/1.png)
 
 ---
 
