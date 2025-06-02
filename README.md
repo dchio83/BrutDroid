@@ -65,7 +65,9 @@ py.exe BrutDroid.py
 
 ## 📸 Screenshot
 
-![screenshot](https://user-images.githubusercontent.com/your-placeholder-image.png)
+![screenshot](Screenshot/1.png)
+![screenshot](Screenshot/2.png)
+![screenshot](Screenshot/3.png)
 
 ---
 
