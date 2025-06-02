@@ -34,9 +34,9 @@ It automates and simplifies rooting, certificate installation, Frida server setu
 ## ⚙️ Requirements
 
 - Python 3.9+
-- `pip install -r requirements.txt`
+- Python in PATH
 - ADB in PATH (platform-tools)
-- Frida, Burp Suite
+- Android Studio, Burp Suite
 
 ---
 
@@ -46,7 +46,7 @@ It automates and simplifies rooting, certificate installation, Frida server setu
 git clone https://github.com/yourusername/BrutDroid.git
 cd BrutDroid
 pip install -r requirements.txt
-py BrutDroid.py
+py.exe BrutDroid.py
 ```
 
 ---
@@ -55,6 +55,7 @@ py BrutDroid.py
 
 - This tool was **inspired by Noxer**, but entirely rewritten and customized by Brut Security.
 - Thanks to:
+  - [Noxer](https://github.com/AggressiveUser/noxer/)
   - [Frida](https://github.com/frida/frida)
   - [Magisk](https://github.com/topjohnwu/Magisk)
   - [rootAVD by NewBit](https://gitlab.com/newbit/rootAVD)
