@@ -117,6 +117,11 @@ python BrutDroid.py
   <u><em>BrutDroid’s vibrant CLI in action.</em></u>
 </p>
 
+---
+
+## 📺 Full Walkthrough – BrutDroid Toolkit
+
+[![Watch the demo](https://img.youtube.com/vi/8iYf5lJOmXo/maxresdefault.jpg)](https://youtu.be/8iYf5lJOmXo)
 
 ---
 
