@@ -53,7 +53,7 @@ Get BrutDroid up and running in minutes:
 
 ### 1. Clone the Repository:
 ```bash
-git clone https://github.com/yourusername/BrutDroid.git
+git clone https://github.com/Brut-Security/BrutDroid.git
 cd BrutDroid
 ```
 
