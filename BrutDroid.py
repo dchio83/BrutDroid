@@ -19,8 +19,8 @@ def display_banner():
     if force_color:
         force_color()
     banner = """
-█▄▄ █─█ █── █────█───█  
-█── █─█ █─█ █─█───█─█  
+█▄▄ █▀█ █░█ ▀█▀ █▀▄ █▀█ █▀█ █ █▀▄
+█▄█ █▀▄ █▄█ ░█░ █▄▀ █▀▄ █▄█ █ █▄▀
 """
     tagline = "Built to Break. Powered by Brut."
     version = "BrutDroid | v1.0.1"
