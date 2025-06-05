@@ -19,11 +19,11 @@ def display_banner():
     if force_color:
         force_color()
     banner = """
-█▄▄ █▀█ █░█ ▀█▀ █▀▄ █▀█ █▀█ █ █▀▄
-█▄█ █▀▄ █▄█ ░█░ █▄▀ █▀▄ █▄█ █ █▄▀
+█▄▄ █─█ █── █────█───█  
+█── █─█ █─█ █─█───█─█  
 """
     tagline = "Built to Break. Powered by Brut."
-    version = "Brut Security | v1.0.0"
+    version = "BrutDroid | v1.0.1"
     if colored:
         cprint("[DEBUG] termcolor loaded", 'yellow', attrs=['bold'])
         print(colored(banner, 'red', attrs=['bold']))
@@ -33,11 +33,11 @@ def display_banner():
         print("\033[1;31m" + banner + "\033[0m")
         print("\033[1;36m" + tagline + "\033[0m")
         print("\033[1;32m" + version + "\033[0m")
-        
+        print("\033[1;33m[DEBUG] Using ANSI colors (termcolor not installed)\033[0m")
 
 def initial_environment_check():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\033[96m→ Initializing Brut Environment...\033[0m")
+    print("\033[96m→ Initializing BrutDroid Environment...\033[0m")
     spinner = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
     checks = [
         ("Python Installation", check_python),
@@ -53,7 +53,8 @@ def initial_environment_check():
             time.sleep(0.15)
         success, detail = check_func()
         results.append((name, success, detail))
-        print(f"\r\033[96m{name}: {'\033[92m✔\033[0m' if success else '\033[91m✖\033[0m'}")
+        status = "\033[92m✔\033[0m" if success else "\033[91m✖\033[0m"
+        print(f"\r\033[96m{name}: {status}")
         time.sleep(0.3)
     print("\n\033[96m→ Check Results:\033[0m")
     all_passed = True
@@ -63,7 +64,8 @@ def initial_environment_check():
         if not success:
             all_passed = False
             print(f"    \033[93m→ {detail}\033[0m")
-    print(f"\n\033[{'92m✔ All systems ready!' if all_passed else '91m⚠ Fix issues to proceed.'}\033[0m")
+    result_message = "\033[92m✔ All systems ready!\033[0m" if all_passed else "\033[91m⚠ Fix issues to proceed.\033[0m"
+    print(f"\n{result_message}")
     time.sleep(1.5)
     print("\033[96m→ Loading menu...\033[0m")
     time.sleep(1)
@@ -166,7 +168,7 @@ def setup_cert_with_magisk():
         try:
             response = requests.get("https://api.github.com/repos/NVISOsecurity/AlwaysTrustUserCerts/releases/latest", timeout=5)
             response.raise_for_status()
-            module_version = response.json()["tag_name"]  # e.g., "v1.3"
+            module_version = response.json()["tag_name"]
             filename = f"AlwaysTrustUserCerts_{module_version}.zip"
             module_url = f"https://github.com/NVISOsecurity/AlwaysTrustUserCerts/releases/download/{module_version}/{filename}"
         except (requests.RequestException, KeyError) as e:
@@ -220,12 +222,11 @@ def install_magisk_and_patch_rootavd():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("\033[96m→ Rooting Emulator with Magisk...\033[0m")
     try:
-        # Step 1: Get latest Magisk version from GitHub API
         print("\033[96m  Fetching latest Magisk version...\033[0m")
         try:
             response = requests.get("https://api.github.com/repos/topjohnwu/Magisk/releases/latest", timeout=5)
             response.raise_for_status()
-            magisk_version = response.json()["tag_name"]  # e.g., "v29.0"
+            magisk_version = response.json()["tag_name"]
             magisk_filename = f"Magisk-{magisk_version}.apk"
             magisk_url = f"https://github.com/topjohnwu/Magisk/releases/download/{magisk_version}/{magisk_filename}"
         except (requests.RequestException, KeyError) as e:
@@ -235,7 +236,6 @@ def install_magisk_and_patch_rootavd():
             magisk_filename = "Magisk-v29.0.apk"
             magisk_url = f"https://github.com/topjohnwu/Magisk/releases/download/{magisk_version}/{magisk_filename}"
 
-        # Download Magisk APK
         print(f"\033[96m  Downloading Magisk {magisk_version}...\033[0m")
         r = requests.get(magisk_url)
         r.raise_for_status()
@@ -244,8 +244,6 @@ def install_magisk_and_patch_rootavd():
         print("\033[96m  Installing Magisk...\033[0m")
         os.system(f"{ADB} install {magisk_filename}")
 
-        # Step 2: Download rootAVD
-        # Note: rootAVD on GitLab doesn't use versioned releases; using master branch archive
         zip_url = "https://gitlab.com/newbit/rootAVD/-/archive/master/rootAVD-master.zip"
         zip_file = "rootAVD.zip"
         extract_dir = "rootAVD"
@@ -263,12 +261,10 @@ def install_magisk_and_patch_rootavd():
         bat_dir = os.path.dirname(bat_path)
         cwd = os.getcwd()
 
-        # Step 3: Show available system images
         print("\033[96m  Listing system images...\033[0m")
         os.chdir(bat_dir)
         os.system('cmd /c "rootAVD.bat ListAllAVDs"')
 
-        # Step 4: Prompt to verify emulator details
         print("\n\033[1;93m→ Verify Emulator Details:\033[0m")
         print("\033[1;36m  1. Open Android Studio → Virtual Device Manager\033[0m")
         print("\033[1;36m  2. Select your emulator and check:\033[0m")
@@ -278,16 +274,13 @@ def install_magisk_and_patch_rootavd():
         print("\033[1;93m→ Enter the system image path (e.g., system-images\\android-31\\google_apis\\x86_64\\ramdisk.img):\033[0m")
         img_path = input("\033[1;36mPath: \033[0m")
 
-        # Step 5: Patch using rootAVD.bat
         print("\033[96m  Patching image...\033[0m")
         os.system(f'cmd /c "rootAVD.bat {img_path}"')
         os.chdir(cwd)
 
-        # Step 6: Emulator powers off — wait 5 seconds
         print("\033[96m  Shutting down emulator...\033[0m")
         time.sleep(5)
 
-        # Step 7: Action Required prompt
         print("\n\033[1;93m→ Action Required:\033[0m")
         print("\033[1;36m  1. Cold boot the emulator manually in Android Studio\033[0m")
         print("\033[96m  Waiting 60s for boot...\033[0m")
@@ -295,16 +288,13 @@ def install_magisk_and_patch_rootavd():
             print(f"\r\033[96m  {i}s left...\033[0m", end="", flush=True)
             time.sleep(1)
 
-        # Step 8: Run ADB commands
         print("\r\033[96m  Verifying connection...\033[0m")
         os.system("adb devices")
         os.system("adb shell echo Emulator Connected")
 
-        # Step 9: Request root
         print("\033[96m  Requesting root...\033[0m")
         os.system("adb shell su -c 'echo Root granted'")
 
-        # Step 10: Prompt to open Magisk
         print("\n\033[1;93m→ Action Required:\033[0m")
         print("\033[1;36m  1. Open the Magisk app on the emulator\033[0m")
         print("\033[1;36m  2. Click 'OK' on the popup to complete setup\033[0m")
@@ -394,7 +384,7 @@ def display_main_menu():
             frida_tool_options()
         elif choice == "6":
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("\033[92m✔ Exiting Brut Security. Stay sharp!\033[0m")
+            print("\033[92m✔ Exiting BrutDroid. Stay sharp!\033[0m")
             break
 
 def display_windows_tools_menu():
