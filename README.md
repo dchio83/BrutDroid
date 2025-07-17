@@ -108,7 +108,7 @@ python BrutDroid.py
 BrutDroid 2.0 is tailored for mobile pentesters, automating the tedious setup of a rooted Android emulator and Burp Suite integration. Whether bypassing SSL pinning, defeating root detection, or injecting custom Frida scripts, BrutDroid simplifies the process so you can focus on finding vulnerabilities. The new UI adds a hacker vibe with colorful ASCII art, while Windows and Android Studio optimization ensures a seamless experience.
 
 
-[![Watch the demo](https://img.youtube.com/vi/8iYf5lJOmXo/maxresdefault.jpg)](https://youtu.be/8iYf5lJOmXo)
+[![Watch the demo](https://img.youtube.com/vi/bDxgilaYcE8/maxresdefault.jpg)](https://youtu.be/bDxgilaYcE8)
 
 ---
 
