@@ -2,6 +2,15 @@
   🧨 BrutDroid - Android Studio Pentest Automator
 </h1>
 
+```bash
+    ____             __  ____             _     __
+   / __ )_______  __/ /_/ __ \\_________  (_)___/ /
+  / __  / ___/ / / / __/ / / / ___/ __ \\/ / __  / 
+ / /_/ / /  / /_/ / /_/ /_/ / /  / /_/ / / /_/ /  
+/_____/_/   \\__,_/\\__/_____/_/   \\____/_/\\__,_/   
+          
+          Made with ❤️ by Brut Security
+```
 
 <p align="center">
   <a href="https://github.com/Brut-Security/BrutDroid/stargazers"><img src="https://img.shields.io/github/stars/Brut-Security/BrutDroid?style=social" alt="GitHub stars"></a>
