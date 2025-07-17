@@ -1,5 +1,5 @@
 <h1 align="center">
-  🧨 BrutDroid - Android Emulator Automation Toolkit
+  🧨 BrutDroid - Android Studio Pentest Automator
 </h1>
 
 
